@@ -180,6 +180,9 @@ function App() {
           <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
         </div>
       </div>
+
+      {/* showmore button */}
+      <button className="showMore block mx-auto my-6 px-6 py-2 border-2 border-black bg-black text-white rounded-md hover:cursor-pointer hover:bg-gray-800 hover:text-white transition-colors duration-300 w-1/4">Show More</button>
     </>
   )
 }
