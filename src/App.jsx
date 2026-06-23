@@ -5,6 +5,19 @@ const Marquee = MarqueeImport.default;
 
 function App() {
 
+  const navItems = [
+    { name: "Home" },
+    { name: "Our Brands" },
+    { name: "Skin Care", dropdown: ["Moisturizers", "Serums", "Sunscreens", "Eye Creams"] },
+    { name: "Facial Kit", dropdown: ["Facial Kits", "Face Wash", "Face Scrubs", "Face Masks"] },
+    { name: "Hair Care", dropdown: ["Shampoos", "Conditioners", "Hair Oils", "Serums"] },
+    {
+      name: "Fragrance",
+      dropdown: ["Perfumes", "Body Sprays", "Deodorants", "Attars"],
+    },
+    { name: "Bundle & Discount" },
+    { name: "Contact" },
+  ];
 
   return (
     <>
@@ -50,32 +63,37 @@ function App() {
         </div>
       </div>
       {/* Nav Bar */}
-      <div className="navbar bg-pink-500 text-white flex justify-center gap-10 py-4">
-        <div className="navItem relative cursor-pointer after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
-          Home
-        </div>
-        <div className="navItem relative cursor-pointer after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
-          Our Brands
-        </div>
-        <div className="navItem relative cursor-pointer after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
-          Skin Care
-        </div>
-        <div className="navItem relative cursor-pointer after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
-          Facial Kit
-        </div>
-        <div className="navItem relative cursor-pointer after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
-          Hair Care
-        </div>
-        <div className="navItem relative cursor-pointer after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
-          Fragrance
-        </div>
-        <div className="navItem relative cursor-pointer after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
-          Bundle & Discount
-        </div>
-        <div className="navItem relative cursor-pointer after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
-          Contact
-        </div>
+      <div className="navbar bg-pink-500 text-white flex justify-center gap-10 py-4 relative">
+        {navItems.map((item, index) => (
+          <div key={index} className="group relative cursor-pointer">
+
+            {/* Nav item with animated underline */}
+            <div className="navItem relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 group-hover:after:w-full">
+              {item.name}
+            </div>
+
+            {/* Dropdown - only render if item has dropdown */}
+            {item.dropdown && (
+              <div className="dropdown absolute top-full left-1/2 -translate-x-1/2 mt-4 
+                         bg-white text-black shadow-lg overflow-hidden
+                         opacity-0 -translate-y-2 invisible
+                         group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible
+                         transition-all duration-300 z-50 min-w-[180px]">
+                {item.dropdown.map((subItem, i) => (
+                  <div
+                    key={i}
+                    className="px-4 py-2 hover:bg-pink-100 hover:text-pink-600 transition-colors duration-200"
+                  >
+                    {subItem}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
       </div>
+
+      {/* Banner Image */}
     </>
   )
 }
