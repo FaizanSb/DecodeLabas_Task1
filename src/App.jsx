@@ -101,8 +101,6 @@ function App() {
 
       </div>
 
-
-
       {/* Nav Bar */}
       <div className="navbar bg-pink-500 text-white hidden min-[900px]:flex justify-center gap-10 py-4 relative">
         {navItems.map((item, index) => (
@@ -219,7 +217,7 @@ function App() {
 
       {/* rounded items */}
 
-      <div className="postNav flex flex-col min-[800px]:flex items-center gap-20 py-8">
+     <div className="postNav flex flex-col min-[800px]:flex-row items-center gap-20 py-8">
         <div className="why px-9 text-xl">Why Customers Choose Us:</div>
         <div className="round flex gap-4">
           <div className="roundedItem">
