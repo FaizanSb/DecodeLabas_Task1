@@ -1,9 +1,18 @@
-
 import MarqueeImport from "react-fast-marquee";
 const Marquee = MarqueeImport.default;
-
-
+import {useState, useEffect} from "react";
 function App() {
+
+  const Images = ['/public/blocker.webp', '/public/banner.jpg'];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % Images.length);
+    }, 8000); // Change image every 4 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
 
   const navItems = [
     { name: "Home" },
@@ -94,9 +103,20 @@ function App() {
       </div>
 
       {/* Banner Image */}
-      <div className="banner">
-        <img src="/public/blocker.webp" alt="Banner" className="w-full h-auto" />
-      </div>
+      <div className="banner relative w-full h-auto overflow-hidden">
+      {Images.map((img, index) => (
+        <img
+          key={index}
+          src={img}
+          alt={`Banner ${index + 1}`}
+          className={`w-full h-auto absolute top-0 left-0 transition-opacity duration-1000 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
+      {/* Spacer to maintain height since images are absolute */}
+      <img src={Images[0]} alt="" className="w-full h-auto opacity-0 pointer-events-none" />
+    </div>
 
       {/* rounded items */}
 
@@ -198,7 +218,7 @@ function App() {
               Premium beauty and personal care products delivered with trust and style.
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3 text-sm text-gray-400">
-              <span>support@yourcompany.com</span>
+              <span>muhammadfaizan4154@gmail.com</span>
               <span className="hidden sm:inline">·</span>
               <span>UAN 111-004422</span>
             </div>
@@ -229,7 +249,7 @@ function App() {
           </div>
         </div>
         <div className="border-t border-gray-800 text-center py-4 text-sm text-gray-500">
-          &copy; 2024 Your Company. All rights reserved.
+          &copy; Developed By Muhammad Faizan 🧑‍💻| 2026 | All rights reserved.
         </div>
       </footer>
     </>
