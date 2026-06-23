@@ -123,6 +123,63 @@ function App() {
       </div>
 
       <div className="v text-center underline text-gray-600"><a href="" className="link">view all</a></div>
+
+      <div className="itemsToCart grid grid-cols-4 gap-6 px-10 my-6">
+        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
+          <img src="/perfume.jpg" alt="perfume" className="w-full h-48 object-cover rounded-md" />
+          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
+          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
+          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
+        </div>
+
+        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
+          <img src="/facewash.jpg" alt="facewash" className="w-full h-48 object-cover rounded-md" />
+          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
+          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
+          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
+        </div>
+
+        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
+          <img src="/shampos.jpg" alt="shampoo" className="w-full h-48 object-cover rounded-md" />
+          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
+          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
+          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
+        </div>
+
+        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
+          <img src="/faceCream.jpg" alt="face cream" className="w-full h-48 object-cover rounded-md" />
+          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
+          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
+          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
+        </div>
+        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
+          <img src="/perfume.jpg" alt="perfume" className="w-full h-48 object-cover rounded-md" />
+          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
+          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
+          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
+        </div>
+
+        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
+          <img src="/facewash.jpg" alt="facewash" className="w-full h-48 object-cover rounded-md" />
+          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
+          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
+          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
+        </div>
+
+        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
+          <img src="/shampos.jpg" alt="shampoo" className="w-full h-48 object-cover rounded-md" />
+          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
+          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
+          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
+        </div>
+
+        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
+          <img src="/faceCream.jpg" alt="face cream" className="w-full h-48 object-cover rounded-md" />
+          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
+          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
+          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
+        </div>
+      </div>
     </>
   )
 }
