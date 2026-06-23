@@ -1,22 +1,24 @@
 import MarqueeImport from "react-fast-marquee";
 const Marquee = MarqueeImport.default;
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 function App() {
 
   const Images = ['/public/blocker.webp', '/public/banner.jpg'];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % Images.length);
-    }, 8000); // Change image every 4 seconds
+    }, 8000); // Change image every 8 seconds
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   const navItems = [
     { name: "Home" },
-    { name: "Our Brands" },
+    { name: "Our Brands", dropdown: ["Golden Pearls", "Fairs & Lovely", "Medora"] },
     { name: "Skin Care", dropdown: ["Moisturizers", "Serums", "Sunscreens", "Eye Creams"] },
     { name: "Facial Kit", dropdown: ["Facial Kits", "Face Wash", "Face Scrubs", "Face Masks"] },
     { name: "Hair Care", dropdown: ["Shampoos", "Conditioners", "Hair Oils", "Serums"] },
@@ -28,10 +30,21 @@ function App() {
     { name: "Contact" },
   ];
 
+
+  const products = [
+    { img: "/perfume.jpg", alt: "perfume", name: "Blue De Blue Fragrance 100ml" },
+    { img: "/facewash.jpg", alt: "facewash", name: "Blue De Blue Fragrance 100ml" },
+    { img: "/shampos.jpg", alt: "shampoo", name: "Blue De Blue Fragrance 100ml" },
+    { img: "/faceCream.jpg", alt: "face cream", name: "Blue De Blue Fragrance 100ml" },
+    { img: "/perfume.jpg", alt: "perfume", name: "Blue De Blue Fragrance 100ml" },
+    { img: "/facewash.jpg", alt: "facewash", name: "Blue De Blue Fragrance 100ml" },
+    { img: "/shampos.jpg", alt: "shampoo", name: "Blue De Blue Fragrance 100ml" },
+    { img: "/faceCream.jpg", alt: "face cream", name: "Blue De Blue Fragrance 100ml" },
+  ];
   return (
     <>
       <Marquee className="marqueTag w-full bg-pink-500 text-white text-center py-2" speed={100}>
-        AB MILAY GA SUB EK CLICK PY! FLAT 20% OFF,
+        AB MILAY GA SUB EK CLICK PY! FLAT 20% OFF
       </Marquee>
       {/* Pre Nav Bar */}
       {/* Pre Nav Bar */}
@@ -48,7 +61,7 @@ function App() {
         </div>
 
         {/* Right: Search + Icons */}
-        <div className="actions flex items-center justify-end gap-4">
+        <div className="actions hidden min-[900px]:flex items-center justify-end gap-4">
 
           <div className="relative flex items-center">
             <input
@@ -70,9 +83,28 @@ function App() {
           </button>
 
         </div>
+
+        {/* Now creating hangburger menu for mobile view */}
+        <button
+          aria-label="Menu"
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="flex min-[900px]:hidden justify-end"
+        >
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {menuOpen ? (
+              <path strokeWidth="2" strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeWidth="2" strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
+
       </div>
+
+
+
       {/* Nav Bar */}
-      <div className="navbar bg-pink-500 text-white flex justify-center gap-10 py-4 relative">
+      <div className="navbar bg-pink-500 text-white hidden min-[900px]:flex justify-center gap-10 py-4 relative">
         {navItems.map((item, index) => (
           <div key={index} className="group relative cursor-pointer">
 
@@ -102,25 +134,92 @@ function App() {
         ))}
       </div>
 
+
+      {/* Slide-in Drawer Menu */}
+      <div
+        className={`mobileMenu fixed top-0 left-0 h-full w-72 bg-white shadow-xl z-50 
+              transform transition-transform duration-300 ease-in-out
+              ${menuOpen ? "translate-x-0" : "-translate-x-full"}`}
+      >
+        {/* Close button */}
+        <div className="flex justify-between items-center px-4 py-4 border-b">
+          <img src="/logo.png" alt="Logo" className="w-24" />
+          <button onClick={() => setMenuOpen(false)} aria-label="Close menu">
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeWidth="2" strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Search */}
+        <div className="flex items-center gap-3 px-4 py-3 border-b">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="flex-1 border-b-2 border-gray-300 px-2 py-1 focus:outline-none focus:border-pink-500"
+          />
+          <img src="/icons8-search-50.png" alt="" className="w-6" />
+        </div>
+
+        {/* Wishlist & Cart */}
+        <div className="flex items-center justify-around px-4 py-3 border-b">
+          <button className="flex items-center gap-2 text-sm">
+            <img src="/icons8-heart-50.png" alt="" className="w-6" /> Wishlist
+          </button>
+          <button className="flex items-center gap-2 text-sm">
+            <img src="/icons8-cart-50.png" alt="" className="w-6" /> Cart
+          </button>
+        </div>
+
+        {/* Nav items as accordion */}
+        <div className="flex flex-col overflow-y-auto h-[calc(100%-180px)]">
+          {navItems.map((item, index) => (
+            <div key={index} className="border-b">
+              <button
+                onClick={() =>
+                  item.dropdown
+                    ? setOpenDropdown(openDropdown === index ? null : index)
+                    : setMenuOpen(false)
+                }
+                className="w-full flex justify-between items-center px-4 py-3 text-left font-medium"
+              >
+                {item.name}
+                {item.dropdown && <span>{openDropdown === index ? "−" : "+"}</span>}
+              </button>
+
+              {item.dropdown && openDropdown === index && (
+                <div className="flex flex-col bg-gray-50">
+                  {item.dropdown.map((subItem, i) => (
+                    <div key={i} className="px-8 py-2 text-sm text-gray-700">
+                      {subItem}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+
       {/* Banner Image */}
       <div className="banner relative w-full h-auto overflow-hidden">
-      {Images.map((img, index) => (
-        <img
-          key={index}
-          src={img}
-          alt={`Banner ${index + 1}`}
-          className={`w-full h-auto absolute top-0 left-0 transition-opacity duration-1000 ${
-            index === currentImageIndex ? "opacity-100" : "opacity-0"
-          }`}
-        />
-      ))}
-      {/* Spacer to maintain height since images are absolute */}
-      <img src={Images[0]} alt="" className="w-full h-auto opacity-0 pointer-events-none" />
-    </div>
+        {Images.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`Banner ${index + 1}`}
+            className={`w-full h-auto absolute top-0 left-0 transition-opacity duration-1000 ${index === currentImageIndex ? "opacity-100" : "opacity-0"
+              }`}
+          />
+        ))}
+        {/* Spacer to maintain height since images are absolute */}
+        <img src={Images[0]} alt="" className="w-full h-auto opacity-0 pointer-events-none" />
+      </div>
 
       {/* rounded items */}
 
-      <div className="postNav flex items-center gap-20 py-8">
+      <div className="postNav flex flex-col min-[800px]:flex items-center gap-20 py-8">
         <div className="why px-9 text-xl">Why Customers Choose Us:</div>
         <div className="round flex gap-4">
           <div className="roundedItem">
@@ -144,61 +243,24 @@ function App() {
 
       <div className="v text-center underline text-gray-600"><a href="" className="link">view all</a></div>
 
-      <div className="itemsToCart grid grid-cols-4 gap-6 px-10 my-6">
-        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
-          <img src="/perfume.jpg" alt="perfume" className="w-full h-48 object-cover rounded-md" />
-          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
-          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
-          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
-        </div>
-
-        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
-          <img src="/facewash.jpg" alt="facewash" className="w-full h-48 object-cover rounded-md" />
-          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
-          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
-          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
-        </div>
-
-        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
-          <img src="/shampos.jpg" alt="shampoo" className="w-full h-48 object-cover rounded-md" />
-          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
-          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
-          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
-        </div>
-
-        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
-          <img src="/faceCream.jpg" alt="face cream" className="w-full h-48 object-cover rounded-md" />
-          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
-          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
-          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
-        </div>
-        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
-          <img src="/perfume.jpg" alt="perfume" className="w-full h-48 object-cover rounded-md" />
-          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
-          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
-          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
-        </div>
-
-        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
-          <img src="/facewash.jpg" alt="facewash" className="w-full h-48 object-cover rounded-md" />
-          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
-          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
-          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
-        </div>
-
-        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
-          <img src="/shampos.jpg" alt="shampoo" className="w-full h-48 object-cover rounded-md" />
-          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
-          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
-          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
-        </div>
-
-        <div className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2">
-          <img src="/faceCream.jpg" alt="face cream" className="w-full h-48 object-cover rounded-md" />
-          <p className="font-medium">Blue De Blue Fragrance 100ml</p>
-          <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
-          <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">Rs. 1,500</div>
-        </div>
+      <div className="itemsToCart grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-6 md:px-10 my-6">
+        {products.map((product, index) => (
+          <div
+            key={index}
+            className="itemsCart border-2 border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-center flex flex-col gap-2"
+          >
+            <img
+              src={product.img}
+              alt={product.alt}
+              className="w-full h-48 object-cover rounded-md"
+            />
+            <p className="font-medium">{product.name}</p>
+            <div className="text-yellow-500">⭐⭐⭐⭐⭐</div>
+            <div className="price text-pink-500 bg-pink-100 p-2 rounded-md hover:cursor-pointer">
+              Rs. 1,500
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* showmore button */}
