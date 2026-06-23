@@ -97,6 +97,23 @@ function App() {
       <div className="banner">
         <img src="/public/blocker.webp" alt="Banner" className="w-full h-auto" />
       </div>
+
+      {/* rounded items */}
+
+      <div className="postNav flex items-center gap-20 py-8">
+        <div className="why px-9 text-xl">Why Customers Choose Us:</div>
+        <div className="round flex gap-4">
+          <div className="roundedItem">
+            <img src="/rounded1.jpg" alt="r1" className="w-40 transition-transform duration-300 hover:-translate-y-2" />
+          </div>
+          <div className="roundedItem">
+            <img src="/roundd2.jpg" alt="r1" className="w-40 transition-transform duration-300 hover:-translate-y-2" />
+          </div>
+          <div className="roundedItem">
+            <img src="/rounded3.jpg" alt="r1" className="w-40 transition-transform duration-300 hover:-translate-y-2" />
+          </div>
+        </div>
+      </div>
     </>
   )
 }
