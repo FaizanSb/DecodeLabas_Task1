@@ -104,16 +104,25 @@ function App() {
         <div className="why px-9 text-xl">Why Customers Choose Us:</div>
         <div className="round flex gap-4">
           <div className="roundedItem">
-            <img src="/rounded1.jpg" alt="r1" className="w-40 transition-transform duration-300 hover:-translate-y-2" />
+            <img src="/rounded1.jpg" alt="r1" className="w-40 transition-transform duration-300 hover:-translate-y-2 hover:cursor-pointer" />
           </div>
           <div className="roundedItem">
-            <img src="/roundd2.jpg" alt="r1" className="w-40 transition-transform duration-300 hover:-translate-y-2" />
+            <img src="/roundd2.jpg" alt="r1" className="w-40 transition-transform duration-300 hover:-translate-y-2 hover:cursor-pointer" />
           </div>
           <div className="roundedItem">
-            <img src="/rounded3.jpg" alt="r1" className="w-40 transition-transform duration-300 hover:-translate-y-2" />
+            <img src="/rounded3.jpg" alt="r1" className="w-40 transition-transform duration-300 hover:-translate-y-2 hover:cursor-pointer" />
           </div>
         </div>
       </div>
+
+      {/* bundels and discounts */}
+      <div className="flex items-center gap-6 my-6 px-10">
+        <div className="flex-1 border-t-2 border-gray-700"></div>
+        <span className="text-lg font-semibold whitespace-nowrap">Bundles and Discounts</span>
+        <div className="flex-1 border-t-2 border-gray-700"></div>
+      </div>
+
+      <div className="v text-center underline text-gray-600"><a href="" className="link">view all</a></div>
     </>
   )
 }
