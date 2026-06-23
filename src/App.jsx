@@ -95,7 +95,7 @@ function App() {
 
       {/* Banner Image */}
       <div className="banner">
-        <img src="/public/banner.jpg" alt="Banner" className="w-full h-auto" />
+        <img src="/public/blocker.webp" alt="Banner" className="w-full h-auto" />
       </div>
     </>
   )
