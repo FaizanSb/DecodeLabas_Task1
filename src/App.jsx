@@ -94,6 +94,9 @@ function App() {
       </div>
 
       {/* Banner Image */}
+      <div className="banner">
+        <img src="/public/banner.jpg" alt="Banner" className="w-full h-auto" />
+      </div>
     </>
   )
 }
