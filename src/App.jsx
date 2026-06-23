@@ -183,6 +183,55 @@ function App() {
 
       {/* showmore button */}
       <button className="showMore block mx-auto my-6 px-6 py-2 border-2 border-black bg-black text-white rounded-md hover:cursor-pointer hover:bg-gray-800 hover:text-white transition-colors duration-300 w-1/4">Show More</button>
+
+      {/* bottom Image */}
+      <div className="bottomBanner mt-10">
+        <img src="/public/bottomImg.jpg" alt="Bottom Banner" className="w-full h-auto" />
+      </div>
+
+      {/* footer */}
+      <footer className="bg-gray-900 text-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold text-white">Your Company</h2>
+            <p className="text-sm text-gray-400">
+              Premium beauty and personal care products delivered with trust and style.
+            </p>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3 text-sm text-gray-400">
+              <span>support@yourcompany.com</span>
+              <span className="hidden sm:inline">·</span>
+              <span>UAN 111-004422</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              <a href="#" className="hover:text-pink-400 transition-colors">Home</a>
+              <a href="#" className="hover:text-pink-400 transition-colors">Our Brands</a>
+              <a href="#" className="hover:text-pink-400 transition-colors">Skin Care</a>
+              <a href="#" className="hover:text-pink-400 transition-colors">Hair Care</a>
+              <a href="#" className="hover:text-pink-400 transition-colors">Fragrance</a>
+              <a href="#" className="hover:text-pink-400 transition-colors">Contact</a>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">Stay Connected</h3>
+            <p className="text-sm text-gray-400 mb-4">
+              Follow us for the latest offers, product launches, and beauty tips.
+            </p>
+            <div className="flex flex-wrap gap-3 text-sm">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Instagram</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Facebook</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Twitter</a>
+            </div>
+          </div>
+        </div>
+        <div className="border-t border-gray-800 text-center py-4 text-sm text-gray-500">
+          &copy; 2024 Your Company. All rights reserved.
+        </div>
+      </footer>
     </>
   )
 }
